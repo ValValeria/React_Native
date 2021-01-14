@@ -1,17 +1,25 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { Text, StyleSheet, View, ScrollView} from 'react-native';
+import BannerComponent from '../components/BannerComponent';
+import BasicLayout from '../layouts/BasicLayout';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+export default class extends React.PureComponent {
+  constructor(props: {} | Readonly<{}>){
+    super(props);
+    
+    this.state = {};
+  }
 
-export default function TabOneScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-    </View>
-  );
+  render(): JSX.Element{
+    return (
+      <ScrollView contentContainerStyle={styles.container}>
+           <BannerComponent/>
+           <BasicLayout>
+
+           </BasicLayout>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -19,14 +27,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
