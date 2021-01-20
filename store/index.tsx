@@ -1,18 +1,14 @@
-import { configureStore , getDefaultMiddleware, createReducer} from "@reduxjs/toolkit";
+import { configureStore , getDefaultMiddleware} from "@reduxjs/toolkit";
+import reducer from './reducer'
+
 
 const middleware = [
    ...getDefaultMiddleware()
 ];
 
-const initState = {
-
-};
-
-const reducer = createReducer(initState,{});
-
 const store:any = configureStore({
     reducer:{
-        data: reducer
+        data:reducer
     },
     middleware
 });

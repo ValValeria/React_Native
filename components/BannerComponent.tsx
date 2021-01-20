@@ -1,47 +1,56 @@
 import React from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import {StyleSheet } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
+import { fontColorDark } from '../constants/Colors';
 
-export default class extends React.PureComponent {
+
+export default class BannerComponent extends React.PureComponent {
+  static propTypes: any;
   constructor(props: {} | Readonly<{}>) {
     super(props);
-
-    this.state = {
-    }
   }
 
   render() {
     return (
-      <ImageBackground source={require(
-        '../assets/images/bg.jpg'
-      )} style={{ width: '100%', minHeight: "100vh" }}>
+      <View style={{ width: '100%', minHeight: "100vh", backgroundColor: "white" }}>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Text h1 style={styles.h1}>
-            {"Find your image".toUpperCase()}
-          </Text>
-
-          <Text h4 style={styles.h1}>
-            The internet’s source of freely-usable images.
-            Powered by creators everywhere.
+          <View style={{width:"90%",maxWidth:"700px"}}>
+            <Text h1 style={styles.text}>
+              {"Find your image".toUpperCase()}
             </Text>
+
+            <Text h4 style={styles.text}>
+              The internet’s source of freely-usable images.
+              Powered by creators everywhere.
+            </Text>
+          </View>
           <Button
             title="Explore more"
-            type="outline"
             raised
+            onPress={() => (this.props as any).navigation.navigate('Search')}
           />
         </View>
-      </ImageBackground>
+      </View>
     );
   }
 }
 
+
 const styles = StyleSheet.create({
-  h1: {
+  text: {
     paddingBottom: "2.3rem",
-    width: "90%",
-    maxWidth: "600px",
-    color: "white",
-    textAlign: "center"
+    textAlign: "center",
+    margin: '0 auto',
+    color: fontColorDark
+  },
+  imageBanner:{
+    position: 'absolute',
+    bottom:'1rem',
+    right:"0rem",
+    width:"50%",
+    height:"50%",
+    maxWidth:"450px",
   }
 });

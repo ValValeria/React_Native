@@ -6,6 +6,7 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import { RootStackParamList } from '../types';
 import HeaderComponent from '../components/HeaderComponent';
+import SearchScreen from '../screens/SearchScreen';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -29,6 +30,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={TabOneScreen} />
+      <Stack.Screen name="Search" component={SearchScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
