@@ -1,7 +1,8 @@
 export interface Post{
     title: string,
     image: string,
-    author: string
+    author: string,
+    id: number
 }
 
 export interface IStore { posts: Post[], searchText: String }

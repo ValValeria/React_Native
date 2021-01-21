@@ -1,34 +1,46 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { fontColorDark } from '../constants/Colors';
-import {Text} from 'react-native-elements'
+import { Text } from 'react-native-elements'
 
-export default function(props:{children: any,title: String}){
+export default function (props: { children: any, title: String, isFirstSlide?: Boolean }) {
+    const Elem = (elemProps: { children: any }) => {
+        if (props.isFirstSlide) {
+            return (
+                <View style={{ paddingTop: "54px" }}>
+                    {elemProps.children}
+                </View>
+            )
+        }
+        return <React.Fragment></React.Fragment>;
+    }
     return (
-        <View style={styles.container}>
-            <View style={styles.wrap}>
-                <Text h1 style={{ textAlign: 'center', color: fontColorDark }}>
-                    Find your favorite images
+        <Elem>
+            <View style={styles.container}>
+                <View style={styles.wrap}>
+                    <Text h2 style={{ textAlign: 'center', color: fontColorDark}}>
+                        {props.title}
                 </Text>
-                <View>
-                    {props.children}
+                    <View style={{ paddingTop: "4rem" , width:"100%"}}>
+                        {props.children}
+                    </View>
                 </View>
             </View>
-        </View>
+        </Elem>
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
-        width:"100%",
-        flex: 1 ,
-        alignItems:"center",
-        justifyContent:"center",
-        backgroundColor:"white"
+    container: {
+        width: "100%",
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "white"
     },
-    wrap:{
-        width:"90%",
-        paddingTop:"2rem",
-        paddingBottom:"2rem"
+    wrap: {
+        width: "90%",
+        paddingTop: "4rem",
+        paddingBottom: "4rem"
     }
 })
