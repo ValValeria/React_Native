@@ -1,10 +1,19 @@
-export interface Post{
-    title: string,
-    image: string,
-    author: string,
-    id: number
+export interface Post {
+    description: string,
+    user:{
+        name:string
+    },
+    urls:{
+        regular:string,
+        full: string
+    },
+    links:{
+        download:string
+    },
+    created_at: string,
+    id: string
 }
 
-export interface IStore { posts: Post[], searchText: String }
+export interface IStore { posts: Post[], searchText: String, page: number, num_page: number }
 
-export interface IResult { text: String, posts: Post[]}
+export interface IResult { text: String, posts: Post[] }

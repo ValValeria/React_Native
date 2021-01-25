@@ -6,10 +6,10 @@ export default (obj:{item:Post,navigation:any}) => {
     const item = obj.item;
     return (
         <Card>
-            <Card.Title>{item.title}</Card.Title>
-            <Card.Image source={{ uri: item.image }} />
+            <Card.Title>{item.created_at}</Card.Title>
+            <Card.Image source={{ uri: item.urls.regular }} />
             <Card.FeaturedSubtitle>
-                {item.author}
+                {item.user.name}
             </Card.FeaturedSubtitle>
             <Button
                 icon={<Icon name='code' color='#ffffff' />}

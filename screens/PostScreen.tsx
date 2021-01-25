@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import BasicLayout from '../layouts/BasicLayout';
-import {connect, useSelector} from 'react-redux';
-import { IStore, Post } from '../interfaces';
+import {useSelector} from 'react-redux';
+import { IStore } from '../interfaces';
 import { ActivityIndicator } from 'react-native';
 import { Card, Image, Text } from 'react-native-elements';
 import { Divider } from 'react-native-elements';
@@ -25,11 +25,11 @@ export default function PostScreen(props:{navigation:any,route:any}){
     return (
         <View>
             <BasicLayout
-                title={post?.title||""}
+                title={"image".toUpperCase()}
                 isFirstSlide={true}
             >
                 <Image
-                    source={{ uri: post?.image }}
+                    source={{ uri: post?.urls.full }}
                     style={{ width: "100%", minHeight: 200 }}
                     PlaceholderContent={<ActivityIndicator />}
                 />
@@ -39,7 +39,7 @@ export default function PostScreen(props:{navigation:any,route:any}){
                     </Text>
                     <Divider style={{ backgroundColor: 'grey' }} />
                     <Text h4>
-                        {post?.author}
+                        {post?.user.name}
                     </Text>
                 </Card>
                 <Card>
@@ -48,7 +48,7 @@ export default function PostScreen(props:{navigation:any,route:any}){
                     </Text>
                     <Divider style={{ backgroundColor: 'grey' }} />
                     <Text h4>
-                        Very beautiful image
+                        {post?.description}
                     </Text>
                 </Card>
             </BasicLayout>
