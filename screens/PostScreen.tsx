@@ -4,9 +4,9 @@ import BasicLayout from '../layouts/BasicLayout';
 import {useSelector} from 'react-redux';
 import { IStore } from '../interfaces';
 import { ActivityIndicator } from 'react-native';
-import { Card, Image, Text } from 'react-native-elements';
+import { Card, Image, Text,Button } from 'react-native-elements';
 import { Divider } from 'react-native-elements';
-
+import * as WebBrowser from 'expo-web-browser';
 
 
 export default function PostScreen(props:{navigation:any,route:any}){
@@ -15,6 +15,11 @@ export default function PostScreen(props:{navigation:any,route:any}){
     const post = useSelector((state:{data:IStore})=>{
         return state.data.posts.find(v=>v.id==id)
     });
+
+    const download = async ()=>{
+        const url = post?.links.download||"";
+        await WebBrowser.openBrowserAsync(url);
+    }
 
     useEffect(()=>{
        if(!post){
@@ -50,6 +55,13 @@ export default function PostScreen(props:{navigation:any,route:any}){
                     <Text h4>
                         {post?.description}
                     </Text>
+                    <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                        <Button
+                            onPress={() => download()}
+                            title="Download"
+                            style={{ marginTop: "1rem", maxWidth: "200px" }}
+                        />
+                    </View>
                 </Card>
             </BasicLayout>
         </View>    

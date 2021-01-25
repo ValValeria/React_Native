@@ -64,13 +64,6 @@ function SearchResultComponent(props:IResult&{navigation:any,isTouched:boolean})
                         } 
                         return null;
                     }}
-
-                    onEndReached={() =>{
-                        (props as any).changePage();
-                        (props as any).changeSearchText();
-                        console.log(1)
-                    }}
-
                     onEndReachedThreshold={100}
                 />
             </SafeAreaView>

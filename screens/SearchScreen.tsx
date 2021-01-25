@@ -1,14 +1,12 @@
 import * as React from 'react';
 import BasicLayout from '../layouts/BasicLayout';
-import { Button, Card, Icon, Input, SearchBar, Text } from 'react-native-elements';
-import { View } from 'react-native';
+import { Button } from 'react-native-elements';
+import { View,StyleSheet, TextInput } from 'react-native';
 import SearchResultComponent from '../components/SearchResultComponent';
-import ModelComponent, { MODEL_STATE } from '../components/ModelComponent';
 import { clearPosts, updateSearchText } from '../store/reducer';
 import {connect} from 'react-redux'
 import { IStore } from '../interfaces';
 import { fetchPhotoes } from '../store/actions';
-import { unwrapResult } from '@reduxjs/toolkit';
 
 function mapDispatchToProps(dispatch: any) {
     return {
@@ -29,7 +27,7 @@ function mapStateToProps(state: {data:IStore}) {
 function SearchScreen(props: { navigation: any, searchText: string, changeSearchText: any, submit:()=>any}) {
 
     const onChangeText = (event: string) => {
-         props.changeSearchText(props.searchText.concat(event))
+         props.changeSearchText(event)
     }
 
     const [isTouched,updateTouch] = React.useState(false);
@@ -48,16 +46,14 @@ function SearchScreen(props: { navigation: any, searchText: string, changeSearch
                 isFirstSlide={true}
             >
                 <View >
-                    <View style={{ width: "100%", flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <SearchBar
-                            placeholder={props.searchText}
-                            style={{ flex: 2,minWidth:"70%",flexBasis:"70%" }}
-                            lightTheme={true}
+                    <View style={{ width: "100%", flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth:"100%"}}>
+                        <TextInput
                             onChangeText={onChangeText}
-                            editable={true}
-                            autoCorrect={true}
+                            style={styles.input}
+                            maxLength={20}
+                            value={props.searchText}
                         />
-                        <View style={{ flex: 1, marginLeft: "10px", maxWidth: "100px" }}>
+                        <View style={{ flex: 1, marginLeft: "10px", minWidth: "100px" }}>
                             <Button
                                 title="Search"
                                 onPress={onSubmit}
@@ -71,6 +67,21 @@ function SearchScreen(props: { navigation: any, searchText: string, changeSearch
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    input:{
+         flex: 2, 
+         flexBasis: "70%",
+         maxWidth:"70%",
+         width:"70%",
+         padding: "0.7rem",
+         lineHeight:2,
+         borderRadius:5,
+         border:"2px solid #F1F6FB",
+         color:"rgb(67, 72, 77)",
+         shadowColor:"rgba(100, 100, 111, 0.2)"
+    }
+})
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(SearchScreen);
