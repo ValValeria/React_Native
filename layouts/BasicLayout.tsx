@@ -7,7 +7,7 @@ export default function (props: { children: any, title: String, isFirstSlide?: B
     const Elem = (elemProps: { children: any }) => {
         if (props.isFirstSlide) {
             return (
-                <View style={{...styles.main_container,paddingTop:"53px",minHeight:"100vh"}}>
+                <View style={{...styles.main_container,minHeight:"100vh"}}>
                     {elemProps.children}
                 </View>
             )
@@ -20,10 +20,10 @@ export default function (props: { children: any, title: String, isFirstSlide?: B
         <Elem>
             <View style={styles.container}>
                 <View style={styles.wrap}>
-                    <Text h2 style={{ textAlign: 'center', color: fontColorDark }}>
-                        {props.title}
+                    <Text h3 style={{ textAlign: 'center', color: fontColorDark, paddingBottom: "1rem" }}>
+                        {props.title.toUpperCase()}
                     </Text>
-                    <View style={{ paddingTop: "4rem", width: "100%" }}>
+                    <View style={{ paddingTop: "1rem", width: "100%" }}>
                         {props.children}
                     </View>
                 </View>
@@ -39,14 +39,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "white",
-        minheight:"100vh"
     },
     wrap: {
-        width: "90%",
+        width: "83%",
         paddingTop: "4rem",
-        paddingBottom: "4rem"
+        paddingBottom: "4rem",
+        flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: "flex-start"
     },
     main_container:{
-        paddingTop: "54px", height: "100%", width: "100vw", minHeight:"100vh"
+        paddingTop: "54px", height: "100%", width: "100vw", minHeight:"100vh",
+        flex:1,flexDirection:'column',alignItems:'center',justifyContent:"flex-start"
     }
 })

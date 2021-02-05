@@ -1,29 +1,25 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Header } from 'react-native-elements';
-import { View } from './Themed';
+import { View } from 'react-native';
+import { Header, Text } from 'react-native-elements';
 
-export default class extends React.PureComponent {
-    render() {
-        return (
-            <View style={styles.top}>
-                <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'FreePhotoes', style: { color: '#fff', fontSize:25 } }}
-                    rightComponent={{ icon: 'home', color: '#fff' }}
-                />
-            </View>
-        )
-    }
+export default function (props: { navigation: any }) {
+    return (
+        <View style={{ width: "100%", padding: "10px", backgroundColor: "white", borderBottomColor: "rgba(0, 0, 0, 0.15)", borderBottomWidth:"1px"}}>
+           <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                <View style={{ width: "83%", flex: 1, alignItems: 'center', justifyContent: 'space-between',flexDirection:'row'}}>
+                    <View style={{flex:3}}>
+                        <Text h4
+                            style={{ color: "rgb(47, 56, 87)", textTransform: "uppercase", fontWeight: "600" }}
+                            onPress={() => props.navigation.navigate('Home')}
+                        >FreeApp</Text>
+                    </View>
+                    <View style={{flex:1,alignItems:"center",flexDirection:"row"}}>
+                        <View>
+                            <Text h4 style={{ color: "rgb(47, 56, 87)",marginLeft:"20px" }} onPress={() => props.navigation.navigate('About us')}>About us</Text>
+                        </View>
+                    </View>
+                </View>
+           </View>
+        </View>
+    );
 }
-
-const styles = StyleSheet.create({
-    top: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        width: "100%",
-        minHeight:50,
-        zIndex:999999
-    },
-});

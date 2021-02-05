@@ -8,6 +8,7 @@ import { fontColorDark } from '../constants/Colors';
 
 export default class BannerComponent extends React.PureComponent {
   static propTypes: any;
+
   constructor(props: {} | Readonly<{}>) {
     super(props);
   }
@@ -18,7 +19,7 @@ export default class BannerComponent extends React.PureComponent {
         <View style={{ width: '100%', height: "100%", backgroundColor: "white", position: "relative", zIndex: 2 }}>
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <View style={{ width: "90%", maxWidth: "700px" }}>
-              <Text h1 style={styles.text}>
+              <Text h2 style={styles.text}>
                 {"Find your image".toUpperCase()}
               </Text>
 

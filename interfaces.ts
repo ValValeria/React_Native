@@ -11,9 +11,9 @@ export interface Post {
         download:string
     },
     created_at: string,
-    id: string
+    id: string,
 }
 
-export interface IStore { posts: Post[], searchText: String, page: number, num_page: number }
+export interface IStore { posts: Post[], navigation?:any,searchText: String, page: number, num_page: number }
 
 export interface IResult { text: String, posts: Post[] }

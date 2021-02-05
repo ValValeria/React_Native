@@ -24,14 +24,14 @@ const reducer = createSlice({
         },
         clearPosts(state){
             state.posts.splice(0, state.posts.length)
-        }
+        },
     },
     extraReducers:{
         [fetchPhotoes.fulfilled.toString()]:(state,action)=>{
            const data: Post[] = action.payload;
            state.posts.push(...data);
         },
-        [fetchPhotoes.rejected.toString()]: (state, action) => {
+        [fetchPhotoes.rejected.toString()]: (_state, action) => {
            const error = action.error.message;
            console.log(error)
         },
