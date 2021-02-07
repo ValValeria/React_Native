@@ -20,7 +20,7 @@ export default function (props: { children: any, title: String, isFirstSlide?: B
         <Elem>
             <View style={styles.container}>
                 <View style={styles.wrap}>
-                    <Text h3 style={{ textAlign: 'center', color: fontColorDark, paddingBottom: "1rem" }}>
+                    <Text h3 style={{ textAlign: 'center', color: fontColorDark, paddingBottom: "2rem" }}>
                         {props.title.toUpperCase()}
                     </Text>
                     <View style={{ paddingTop: "1rem", width: "100%" }}>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     wrap: {
         width: "83%",
-        paddingTop: "4rem",
+        paddingTop: "5rem",
         paddingBottom: "4rem",
         flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: "flex-start"
     },

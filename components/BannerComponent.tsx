@@ -15,9 +15,9 @@ export default class BannerComponent extends React.PureComponent {
 
   render() {
     return (
-      <View style={{ position: "relative", width: "100%", height: "100vh" }}>
+      <View style={{ position: "relative", width: "100%", height: "89vh" }}>
         <View style={{ width: '100%', height: "100%", backgroundColor: "white", position: "relative", zIndex: 2 }}>
-          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
             <View style={{ width: "90%", maxWidth: "700px" }}>
               <Text h2 style={styles.text}>
                 {"Find your image".toUpperCase()}

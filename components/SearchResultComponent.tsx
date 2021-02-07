@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { FlatList, View } from 'react-native';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { IResult, IStore, Post } from '../interfaces';
-import {Button, Card, Icon, Text} from 'react-native-elements'
+import { Button, Card, Icon, Text } from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CardComponent from './CardComponent';
 import { ActivityIndicator } from 'react-native';
@@ -10,9 +10,9 @@ import EmptyResultsComponent from './EmptyResultsComponent';
 import ListFooterComponent from './ListFooterComponent';
 import { changePageNum, updateSearchText } from '../store/reducer';
 
-const mapSelectData: (state: { data: IStore }) => IResult = (state: any)=>({
-     text: state.data.searchText,
-     posts: state.data.posts as Post[]
+const mapSelectData: (state: { data: IStore }) => IResult = (state: any) => ({
+    text: state.data.searchText,
+    posts: state.data.posts as Post[]
 })
 
 function mapDispatchToProps(dispatch: any) {
@@ -22,46 +22,48 @@ function mapDispatchToProps(dispatch: any) {
     };
 }
 
-function SearchResultComponent(props:IResult&{navigation:any,isTouched:boolean}){
+function SearchResultComponent(props: IResult & { navigation: any, isTouched: boolean, errors:string[] }) {
     return (
-        <View style={{ width: "100%", paddingTop: "2rem" }}>
+        <View style={{ width: "100%", paddingTop: "1.2rem" }}>
             <SafeAreaView style={{ width: "100%" }}>
                 <FlatList
-                    style={{paddingTop:"1rem"}}
-                    
+
                     data={props.posts}
 
-                    renderItem={(obj:{item:Post})=>{
-                       return <CardComponent item={obj.item} navigation={props.navigation}/>
+                    renderItem={(obj: { item: Post }) => {
+                        return <CardComponent item={obj.item} navigation={props.navigation} />
                     }}
 
                     ListHeaderComponent={() => {
-                        return (
-                            <Card>
-                                <Card.Title>
-                                    You are looking for {props.text}
-                                </Card.Title>
-                            </Card>
-                        )
+                        if (props.text.length && !props.errors.length) {
+                            return (
+                                <Card>
+                                    <Card.Title>
+                                        You are looking for {props.text}
+                                    </Card.Title>
+                                </Card>
+                            );
+                        }
+                        return null;
                     }}
 
                     centerContent={true}
 
-                    ListEmptyComponent={()=>{
-                        if(props.isTouched){
+                    ListEmptyComponent={() => {
+                        if (props.isTouched) {
                             return (
-                                <View style={{paddingTop:"2rem"}}>
+                                <View style={{ paddingTop: "2rem" }}>
                                     <ActivityIndicator size="large" />
                                 </View>
                             )
                         } else {
-                            return <EmptyResultsComponent/>;
+                            return <EmptyResultsComponent />;
                         }
                     }}
-                    ListFooterComponent={()=>{
-                        if(props.posts.length){
-                            return <ListFooterComponent/>;
-                        } 
+                    ListFooterComponent={() => {
+                        if (props.posts.length) {
+                            return <ListFooterComponent />;
+                        }
                         return null;
                     }}
                     onEndReachedThreshold={100}
@@ -73,4 +75,4 @@ function SearchResultComponent(props:IResult&{navigation:any,isTouched:boolean})
 
 
 
-export default connect(mapSelectData,mapDispatchToProps)(SearchResultComponent);
+export default connect(mapSelectData, mapDispatchToProps)(SearchResultComponent);

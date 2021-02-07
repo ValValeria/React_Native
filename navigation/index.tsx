@@ -8,6 +8,7 @@ import { RootStackParamList } from '../types';
 import SearchScreen from '../screens/SearchScreen';
 import PostScreen from '../screens/PostScreen';
 import HeaderComponent from '../components/HeaderComponent';
+import AboutUsScreen from '../screens/AboutUsScreen';
 
 
 
@@ -40,6 +41,7 @@ function RootNavigator() {
       <Stack.Screen name="Home" component={TabOneScreen} options={{ title: "Home" }} />
       <Stack.Screen name="Search" component={SearchScreen} options={{ title: 'Search' }} />
       <Stack.Screen name="Post" component={PostScreen} options={{ title: 'Post' }} />
+      <Stack.Screen name="AboutUs" component={AboutUsScreen} options={{ title: 'About Us' }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
